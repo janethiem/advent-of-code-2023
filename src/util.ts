@@ -8,3 +8,12 @@ export function setIntersection<T>(setA: Set<T>, setB: Set<T>): Set<T> {
 
   return intersection;
 }
+
+// Returns true if the character is a digit
+export const isDigit = (char : string) : boolean => {
+  if (char.length !== 1) {
+    throw new Error("function expects a single character")
+  }
+
+  return /[0-9]/.test(char)
+}

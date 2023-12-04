@@ -1,13 +1,11 @@
-import { GLOBAL_CONSTANT } from './constants';
-import { IUser } from './interfaces';
+import * as fs from 'fs'
+import { sumCalibrationValues } from './day1';
 
 function main(): void
 {
-    const user: IUser = {
-        name: "Wayne Gretsky",
-        age: 111
-    };
-    console.log( `Hello World! The number is ${GLOBAL_CONSTANT} and the user is ${user.name} who is ${user.age}` );
+    const day1Input = fs.readFileSync('test/fixtures/day1Input.txt', 'utf8')
+    const day1Answer = sumCalibrationValues(day1Input)
+    console.log('Day 1 Answer: ', day1Answer)
 }
 
 main();
