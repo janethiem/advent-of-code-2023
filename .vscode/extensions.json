@@ -1,0 +1,19 @@
+{
+  "recommendations": [
+    "firsttris.vscode-jest-runner",
+    "dbaeumer.vscode-eslint",
+    "mhutchie.git-graph",
+    "trixnz.go-to-method",
+    "visualstudioexptteam.vscodeintellicode",
+    "visualstudioexptteam.intellicode-api-usage-examples",
+    "meezilla.json",
+    "christian-kohler.npm-intellisense",
+    "bibhasdn.unique-lines",
+    "vscode-icons-team.vscode-icons",
+    "aaron-bond.better-comments",
+    "ecmel.vscode-html-css",
+    "quicktype.quicktype",
+    "techer.open-in-browser",
+    "christian-kohler.path-intellisense"
+  ]
+}
