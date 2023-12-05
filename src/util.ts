@@ -1,3 +1,5 @@
+import * as fs from 'fs'
+
 /** Returns a new set containing only the elements from a and b
  * which are present in both
  */
@@ -16,4 +18,10 @@ export const isDigit = (char : string) : boolean => {
   }
 
   return /[0-9]/.test(char)
+}
+
+// Reads a text file from the provided filname in the fixtures folder, splits by newlines, and returns an array of strings
+export const parseTextFileIntoLines = (filename : string) : string[] => {
+  const data = fs.readFileSync('test/fixtures/' + filename, 'utf8')
+  return data.split('\n')
 }

@@ -1,11 +1,21 @@
 import * as fs from 'fs'
-import { sumCalibrationValues } from './day1';
+import { sumCalibrationValuesDigitsOnly, sumCalibrationValuesMixOfDigitsAndStrings } from './day1';
+import { parseTextFileIntoLines } from './util'
+import { DEFAULT_GAME_LIMITS, sumIdsOfPossibleGames } from './day2';
 
 function main(): void
 {
     const day1Input = fs.readFileSync('test/fixtures/day1Input.txt', 'utf8')
-    const day1Answer = sumCalibrationValues(day1Input)
-    console.log('Day 1 Answer: ', day1Answer)
+
+    const day1Part1Answer = sumCalibrationValuesDigitsOnly(day1Input)
+    console.log('Day 1, Part 1 Answer: ', day1Part1Answer)
+
+    const day1Part2Answer = sumCalibrationValuesMixOfDigitsAndStrings(day1Input)
+    console.log('Day 1, Part 2 Answer: ', day1Part2Answer)
+
+    const day2Input = parseTextFileIntoLines('day2Input.txt')
+    const day2Answer = sumIdsOfPossibleGames(DEFAULT_GAME_LIMITS, day2Input)
+    console.log('Day 2 Answer: ', day2Answer)
 }
 
 main();
