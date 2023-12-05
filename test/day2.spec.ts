@@ -1,7 +1,7 @@
 import { parseTextFileIntoLines } from "../src/util";
-import { parseGame, Game, sumIdsOfPossibleGames, DEFAULT_GAME_LIMITS } from "../src/day2";
+import { parseGame, Game, sumIdsOfPossibleGames, DEFAULT_GAME_LIMITS, sumOfPowerOfEveryGame } from "../src/day2";
 
-describe("Day 1 tests" , () => {
+describe("Day 2, part 1 tests" , () => {
     it("should return the correct sum of game ids for the test data", () => {
         const inputData = parseTextFileIntoLines('day2Text.txt')
         const sum = sumIdsOfPossibleGames(DEFAULT_GAME_LIMITS, inputData)
@@ -16,3 +16,12 @@ describe("Day 1 tests" , () => {
         expect(game.maxBlue).toEqual(6)
     })
 })
+
+describe("Day 2, part 2 tests" , () => {
+    it("should return the correct sum of game powers for the test data", () => {
+        const inputData = parseTextFileIntoLines('day2Text.txt')
+        const sum = sumOfPowerOfEveryGame(inputData)
+        expect(sum).toEqual(2286)
+    })
+})
+

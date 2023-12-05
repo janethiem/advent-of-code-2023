@@ -9,7 +9,6 @@ export type GameLimits = {
     green: number
     blue: number
 }
-
 export type Game = {
     id: number
     maxRed: number
@@ -60,6 +59,18 @@ export const sumIdsOfPossibleGames = (gameLimits : GameLimits, inputGameLines : 
         {
             sum = sum + game.id
         }
+    })
+
+    return sum
+}
+
+export const sumOfPowerOfEveryGame = (inputGameLines : string[]) : number => {
+    let sum = 0
+
+    inputGameLines.forEach((gameLine : string) => {
+        const game : Game = parseGame(gameLine)
+        const power = game.maxRed * game.maxGreen * game.maxBlue
+        sum = sum + power
     })
 
     return sum
