@@ -2,7 +2,7 @@ import * as fs from 'fs'
 import { sumCalibrationValuesDigitsOnly, sumCalibrationValuesMixOfDigitsAndStrings } from './day1';
 import { parseTextFileIntoGrid, parseTextFileIntoLines } from './util'
 import { DEFAULT_GAME_LIMITS, sumIdsOfPossibleGames, sumOfPowerOfEveryGame } from './day2';
-import { sumOfPartNumbers } from './day3';
+import { sumOfGearRatios, sumOfPartNumbers } from './day3';
 
 function main(): void
 {
@@ -23,8 +23,12 @@ function main(): void
     console.log('Day 2, Part 2 Answer: ', day2Part2Answer)
 
     const day3Input = parseTextFileIntoGrid('day3Input.txt')
+
     const day3Part1Answer = sumOfPartNumbers(day3Input)
     console.log('Day 3, Part 1 Answer: ', day3Part1Answer)
+
+    const day3Part2Answer = sumOfGearRatios(day3Input)
+    console.log('Day 3, Part 2 Answer: ', day3Part2Answer)
 }
 
 main();
