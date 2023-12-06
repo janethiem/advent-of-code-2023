@@ -6,19 +6,49 @@ export type AlmanacEntry = {
 }
 
 export type Almanac = {
-    seeds: number[]
-    almanacEntries: AlmanacEntry[][]
+    conversionMaps: AlmanacEntry[][]
+}
+
+export const calculateLowestLocationNumberFromSeedList = (almanacText : string) : number => {
+    let lowestLocationNumber = Number.MAX_VALUE
+    let seeds = []
+    let match = almanacText.match(/seeds: (\d+(?: \d+)*)/);
+    if (match) {
+        seeds = match[1].split(' ').map(Number)
+    }
+
+    const almanac = createAlmanac(almanacText)
+    seeds.forEach((seed) => {
+        const locationNumber = calculateLocationNumber(almanac, seed)
+        lowestLocationNumber = locationNumber < lowestLocationNumber ? locationNumber : lowestLocationNumber
+    })
+    
+    return lowestLocationNumber
+}
+
+export const calculateLowestLocationNumberWithSeedRanges = (almanacText : string) : number => {
+    let lowestLocationNumber = Number.MAX_VALUE
+    let match = almanacText.match(/seeds: (\d+(?: \d+)*)/);
+    if (match) {
+        const almanac = createAlmanac(almanacText)
+        let seedNumbers = match[1].split(' ').map(Number)
+        for(let i = 0; i < seedNumbers.length; i = i + 2)
+        {
+            let start = seedNumbers[i]
+            let range = seedNumbers[i+1]
+            for (let j = start; j < start + range; j++) {
+                const locationNumber = calculateLocationNumber(almanac, j)
+                lowestLocationNumber = locationNumber < lowestLocationNumber ? locationNumber : lowestLocationNumber
+            }
+
+        }
+    }
+    return lowestLocationNumber
 }
 
 export const createAlmanac = (almanacText : string) : Almanac => {
     let almanac : Almanac = {
-        seeds: [],
-        almanacEntries: []
-    }
-
-    let match = almanacText.match(/seeds: (\d+(?: \d+)*)/);
-    if (match) {
-        almanac.seeds = match[1].split(' ').map(Number);
+        conversionMaps: []
     }
 
     let mapParts = almanacText.split('map:\n')
@@ -39,36 +69,38 @@ export const createAlmanac = (almanacText : string) : Almanac => {
                 almanacEntries.push(almanacEntry)
             }
         })
-        almanac.almanacEntries.push(almanacEntries)
+        almanac.conversionMaps.push(almanacEntries)
     })
 
     return almanac
 }
 
-export const calculateLowestLocationNumberFromSeeds = (almanac) : number => {
-    let lowestLocationNumber = Number.MAX_VALUE
+export const calculateLocationNumber = (almanac, seed) : number => {
+    //let lowestLocationNumber = Number.MAX_VALUE
 
-    almanac.seeds.forEach((seed) => {
         let sourceNumber = seed
-        almanac.almanacEntries.forEach((conversionMap : AlmanacEntry[])=> {
+        almanac.conversionMaps.forEach((conversionMap : AlmanacEntry[])=> {
             let destinationNumber = null
             conversionMap.forEach((almanacEntry : AlmanacEntry) => {
-                if (sourceNumber >= almanacEntry.sourceRangeStart && sourceNumber <= almanacEntry.sourceRangeStart + almanacEntry.rangeLength)
+                if (sourceNumber >= almanacEntry.sourceRangeStart && sourceNumber < almanacEntry.sourceRangeStart + almanacEntry.rangeLength)
                 {
+                    
                     let offset = sourceNumber - almanacEntry.sourceRangeStart
                     destinationNumber = almanacEntry.destinationRangeStart + offset
                 }
             })
 
-            if (!destinationNumber)
+            if (destinationNumber === null)
             {
                 destinationNumber = sourceNumber
             }
 
             sourceNumber = destinationNumber
         })
-        lowestLocationNumber = sourceNumber < lowestLocationNumber ? sourceNumber : lowestLocationNumber
-    })
+//         lowestLocationNumber = sourceNumber < lowestLocationNumber ? sourceNumber : lowestLocationNumber
 
-    return lowestLocationNumber
-}
+//     return lowestLocationNumber
+
+        return sourceNumber
+    }
+
