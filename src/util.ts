@@ -31,3 +31,8 @@ export const parseTextFileIntoGrid = (filename : string) : string[][] => {
   const data = fs.readFileSync('test/fixtures/' + filename, 'utf8')
   return data.split('\n').map(line => line.split(''))
 }
+
+// // Reads a text file from the provided filname in the fixtures folder, returns it as a single string
+export const parseTextFileIntoString = (filename : string) : string => {
+  return fs.readFileSync('test/fixtures/' + filename, 'utf8')
+}

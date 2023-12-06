@@ -1,9 +1,10 @@
 import * as fs from 'fs'
 import { sumCalibrationValuesDigitsOnly, sumCalibrationValuesMixOfDigitsAndStrings } from './day1';
-import { parseTextFileIntoGrid, parseTextFileIntoLines } from './util'
+import { parseTextFileIntoGrid, parseTextFileIntoLines, parseTextFileIntoString } from './util'
 import { DEFAULT_GAME_LIMITS, sumIdsOfPossibleGames, sumOfPowerOfEveryGame } from './day2';
 import { sumOfGearRatios, sumOfPartNumbers } from './day3';
 import { sumCardPoints, sumScratchCards } from './day4';
+import { calculateLowestLocationNumberFromSeeds, createAlmanac } from "../src/day5"
 
 function main(): void
 {
@@ -39,6 +40,9 @@ function main(): void
     const day4Part2Answer = sumScratchCards(day4Input)
     console.log('Day 4, Part 2 Answer: ', day4Part2Answer)
 
+    const day5Input = createAlmanac(parseTextFileIntoString('day5Input.txt'))
+    const day5Part1Answer = calculateLowestLocationNumberFromSeeds(day5Input)
+    console.log('Day 5, Part 1 Answer: ', day5Part1Answer)
 }
 
 main();
