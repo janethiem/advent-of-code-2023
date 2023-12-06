@@ -3,7 +3,7 @@ import { sumCalibrationValuesDigitsOnly, sumCalibrationValuesMixOfDigitsAndStrin
 import { parseTextFileIntoGrid, parseTextFileIntoLines } from './util'
 import { DEFAULT_GAME_LIMITS, sumIdsOfPossibleGames, sumOfPowerOfEveryGame } from './day2';
 import { sumOfGearRatios, sumOfPartNumbers } from './day3';
-import { sumCardPoints } from './day4';
+import { sumCardPoints, sumScratchCards } from './day4';
 
 function main(): void
 {
@@ -32,8 +32,13 @@ function main(): void
     console.log('Day 3, Part 2 Answer: ', day3Part2Answer)
 
     const day4Input = parseTextFileIntoLines('day4Input.txt')
+    
     const day4Part1Answer = sumCardPoints(day4Input)
     console.log('Day 4, Part 1 Answer: ', day4Part1Answer)
+
+    const day4Part2Answer = sumScratchCards(day4Input)
+    console.log('Day 4, Part 2 Answer: ', day4Part2Answer)
+
 }
 
 main();
