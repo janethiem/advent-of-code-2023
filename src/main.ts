@@ -4,6 +4,7 @@ import { parseTextFileIntoGrid, parseTextFileIntoLines, parseTextFileIntoString 
 import { DEFAULT_GAME_LIMITS, sumIdsOfPossibleGames, sumOfPowerOfEveryGame } from './day2';
 import { sumOfGearRatios, sumOfPartNumbers } from './day3';
 import { sumCardPoints, sumScratchCards } from './day4';
+import { calculateNumberOfWaysToWinMultiplied, parseRaces } from './day6';
 //import { calculateLowestLocationNumberFromSeedList, calculateLowestLocationNumberWithSeedRanges } from "../src/day5"
 
 function main(): void
@@ -47,6 +48,11 @@ function main(): void
 
     // const day5Part2Answer = calculateLowestLocationNumberWithSeedRanges(day5Input)
     // console.log('Day 5, Part 2 Answer: ', day5Part2Answer)
+
+    const day6Input = parseRaces(parseTextFileIntoString('day6Input.txt'))
+
+    const day6Part1Answer = calculateNumberOfWaysToWinMultiplied(day6Input)
+    console.log('Day 6, Part 1 Answer: ', day6Part1Answer)
 }
 
 main();
