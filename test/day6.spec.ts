@@ -1,4 +1,4 @@
-import { calculateNumberOfWaysToWinMultiplied, parseRaces } from "../src/day6"
+import { calculateNumberOfWaysToWinMultiplied, parseRaces, parseRace } from "../src/day6"
 import { parseTextFileIntoString } from "../src/util"
 
 describe("Day 6, Part 1 Tests" , () => {
@@ -20,9 +20,17 @@ describe("Day 6, Part 1 Tests" , () => {
 
 describe("Day 6, Part 2 Tests" , () => {
 
-    // it("should return the correct number of scratchcards for the test data", () => {
-    //     const data = parseTextFileIntoLines('day4Test.txt')
-    //     const sum = sumScratchCards(data)
-    //     expect(sum).toEqual(30)
-    // })
+    it("should parse the race correctly", () => {
+        const data = parseTextFileIntoString('day6Test.txt')
+        const races = parseRace(data)
+        expect(races[0].time).toEqual(71530)
+        expect(races[0].distance).toEqual(940200)
+    })
+
+    it("should return the calculate the number of ways to win for the test data", () => {
+        const data = parseTextFileIntoString('day6Test.txt')
+        const races = parseRace(data)
+        const numberOfWays = calculateNumberOfWaysToWinMultiplied(races)
+        expect(numberOfWays).toEqual(71503)
+    })
 })

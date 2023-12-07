@@ -24,6 +24,22 @@ export const parseRaces = (raceText : string) : Race[] => {
     return races
 }
 
+export const parseRace = (raceText : string) : Race[] => {
+    let races = []
+
+    let timeMatch = raceText.match(/Time:\s*((?:\d+\s*)+)/)
+    let time = timeMatch && Number(timeMatch[1].replace(/\s+/g, ''))
+    let distanceMatch = raceText.match(/Distance:\s*((?:\d+\s*)+)/)
+    let distance = distanceMatch && Number(distanceMatch[1].replace(/\s+/g, '')) 
+
+    races.push({
+        time: time,
+        distance: distance
+    })
+
+    return races
+}
+
 export const calculateNumberOfWaysToWinMultiplied = (races : Race[]) : number => {
     let result = 1
 
